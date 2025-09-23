@@ -29,4 +29,23 @@ public class JogoTest {
 
 		assertEquals(jogo.jogo(jogador, dado1, dado2), true)
 	}
+	@Test
+	public void testarJogoFalse(){
+		when(dado1.numero()).thenReturn(1);
+		when(dado2.numero()).thenReturn(1);
+		when(jogador.lancar(dado1, dado2)).thenReturn(dado1.numero() + dado2.numero());
+
+		assertEquals(jogo.jogo(jogador, dado1, dado2), false)
+
+		when(dado1.numero()).thenReturn(1);
+		when(dado2.numero()).thenReturn(2);
+
+		assertEquals(jogo.jogo(jogador, dado1, dado2), false)
+
+			
+		when(dado1.numero()).thenReturn(6);
+		when(dado2.numero()).thenReturn(2);
+
+		assertEquals(jogo.jogo(jogador, dado1, dado2), false)
+	}
 }
